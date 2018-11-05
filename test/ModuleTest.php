@@ -1,7 +1,7 @@
 <?php
-namespace LeoGalleguillos\BusinessTest;
+namespace LeoGalleguillos\ProjectManagementTest;
 
-use LeoGalleguillos\Business\Module;
+use LeoGalleguillos\ProjectManagement\Module;
 use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Application;
 

@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\Business\Model\Table;
+namespace LeoGalleguillos\ProjectManagement\Model\Table;
 
 use Generator;
 use Zend\Db\Adapter\Adapter;
@@ -58,7 +58,7 @@ class Task
         return (int) $row['count'];
     }
 
-    public function selectCountWhereBusinessId(int $businessId) : int
+    public function selectCountWhereProjectManagementId(int $businessId) : int
     {
         $sql = '
             SELECT COUNT(*) AS `count`
@@ -73,7 +73,7 @@ class Task
         return (int) $row['count'];
     }
 
-    public function selectWhereBusinessId(int $businessId) : Generator
+    public function selectWhereProjectManagementId(int $businessId) : Generator
     {
         $sql = '
             SELECT `task`.`task_id`

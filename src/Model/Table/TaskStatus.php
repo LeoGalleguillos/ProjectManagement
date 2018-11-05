@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\Business\Model\Table;
+namespace LeoGalleguillos\ProjectManagement\Model\Table;
 
 use Generator;
 use Zend\Db\Adapter\Adapter;
