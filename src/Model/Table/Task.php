@@ -19,13 +19,13 @@ class Task
     public function insert(
         int $businessId,
         int $userId,
-        string $summary,
+        string $name,
         string $description
     ) {
         $sql = '
             INSERT
               INTO `task` (
-                   `business_id`, `user_id`, `summary`, `description`, `created`
+                   `business_id`, `user_id`, `name`, `description`, `created`
                    )
             VALUES (?, ?, ?, ?, UTC_TIMESTAMP())
                  ;
@@ -33,7 +33,7 @@ class Task
         $parameters = [
             $businessId,
             $userId,
-            $summary,
+            $name,
             $description,
         ];
         return $this->adapter
@@ -73,13 +73,13 @@ class Task
         return (int) $row['count'];
     }
 
-    public function selectWhereProjectManagementId(int $businessId) : Generator
+    public function selectWhereBusinessId(int $businessId) : Generator
     {
         $sql = '
             SELECT `task`.`task_id`
                  , `task`.`business_id`
                  , `task`.`user_id`
-                 , `task`.`summary`
+                 , `task`.`name`
                  , `task`.`description`
                  , `task`.`task_status_id`
                  , `task`.`views`
@@ -107,7 +107,7 @@ class Task
             SELECT `task_id`
                  , `business_id`
                  , `user_id`
-                 , `summary`
+                 , `name`
                  , `description`
                  , `task_status_id`
                  , `views`
