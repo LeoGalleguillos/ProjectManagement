@@ -3,4 +3,4 @@ CREATE TABLE `task_status` (
     `name` varchar(255) NOT NULL,
     `order` int(3) DEFAULT NULL,
     PRIMARY KEY (`task_status_id`)
-) charset=utf8;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

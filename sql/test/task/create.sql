@@ -9,4 +9,4 @@ CREATE TABLE `task` (
     `created` datetime not null,
     PRIMARY KEY (`task_id`),
     INDEX `business_id` (`business_id`)
-) charset=utf8;
+) CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
