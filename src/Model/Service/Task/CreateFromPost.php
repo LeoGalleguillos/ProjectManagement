@@ -3,7 +3,7 @@ namespace LeoGalleguillos\ProjectManagement\Model\Service\Task;
 
 use Exception;
 use LeoGalleguillos\Flash\Model\Service as FlashService;
-use LeoGalleguillos\ProjectManagement\Model\Entity as ProjectManagementEntity;
+use LeoGalleguillos\Business\Model\Entity as BusinessEntity;
 use LeoGalleguillos\ProjectManagement\Model\Table as ProjectManagementTable;
 use LeoGalleguillos\User\Model\Service as UserService;
 
