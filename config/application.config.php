@@ -2,6 +2,7 @@
 
 return [
     'modules' => [
+        'LeoGalleguillos\Flash',
         'LeoGalleguillos\ProjectManagement',
         'LeoGalleguillos\User',
         'Zend\Db',
