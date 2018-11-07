@@ -3,27 +3,23 @@ namespace LeoGalleguillos\ProjectManagement\Model\Service\Task;
 
 use LeoGalleguillos\ProjectManagement\Model\Entity as ProjectManagementEntity;
 use LeoGalleguillos\ProjectManagement\Model\Table as ProjectManagementTable;
-use LeoGalleguillos\User\Model\Entity as UserEntity;
+use LeoGalleguillos\User\Model\Service as UserService;
 
-class Create
+class CreateFromPost
 {
-    /**
-     * Construct.
-     *
-     * @param BusinessTable\Task $taskTable
-     */
     public function __construct(
-        ProjectManagementTable\Task $taskTable
+        ProjectManagementTable\Task $taskTable,
+        UserService\LoggedInUser $loggedInUserService
     ) {
-        $this->taskTable = $taskTable;
+        $this->taskTable           = $taskTable;
+        $this->loggedInUserService = $loggedInUserService;
     }
 
     public function create(
-        BusinessEntity\Business $businessEntity,
-        UserEntity\User $userEntity,
-        string $name,
-        string $description
-    ) : int {
+        BusinessEntity\Business $businessEntity
+    ): int {
+        $userEntity = $this->loggedInUserService->getLoggedInUser();
+
         return $this->taskTable->insert(
             $businessEntity->getBusinessId(),
             $userEntity->getUserId(),

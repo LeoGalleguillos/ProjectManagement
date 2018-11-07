@@ -5,6 +5,7 @@ use LeoGalleguillos\ProjectManagement\Model\Factory as ProjectManagementFactory;
 use LeoGalleguillos\ProjectManagement\Model\Service as ProjectManagementService;
 use LeoGalleguillos\ProjectManagement\Model\Table as ProjectManagementTable;
 use LeoGalleguillos\ProjectManagement\View\Helper as ProjectManagementHelper;
+use LeoGalleguillos\User\Model\Service as UserService;
 
 class Module
 {
@@ -24,6 +25,12 @@ class Module
     {
         return [
             'factories' => [
+                ProjectManagementService\Task\CreateFromPost::class => function ($sm) {
+                    return new ProjectManagementService\Task\CreateFromPost(
+                        $sm->get(ProjectManagementTable\Task::class),
+                        $sm->get(UserService\LoggedInUser::class)
+                    );
+                },
                 ProjectManagementTable\Task::class => function ($serviceManager) {
                     return new ProjectManagementTable\Task(
                         $serviceManager->get('project-management')
