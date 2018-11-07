@@ -19,7 +19,7 @@ class CreateFromPost
         $this->loggedInUserService = $loggedInUserService;
     }
 
-    public function create(
+    public function createFromPost(
         BusinessEntity\Business $businessEntity
     ): int {
         $errors = [];
