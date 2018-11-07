@@ -21,7 +21,7 @@ class Task
         int $userId,
         string $name,
         string $description
-    ) {
+    ): int {
         $sql = '
             INSERT
               INTO `task` (
@@ -47,7 +47,7 @@ class Task
      *
      * @return int
      */
-    public function selectCount() : int
+    public function selectCount(): int
     {
         $sql = '
             SELECT COUNT(*) AS `count`
@@ -58,22 +58,22 @@ class Task
         return (int) $row['count'];
     }
 
-    public function selectCountWhereProjectManagementId(int $businessId) : int
+    public function selectCountWhereBusinessId(int $businessId): int
     {
         $sql = '
             SELECT COUNT(*) AS `count`
               FROM `task`
-             WHERE `business_id` = :businessId
+             WHERE `business_id` = ?
                  ;
         ';
         $parameters = [
-            'businessId' => $businessId,
+            $businessId,
         ];
         $row = $this->adapter->query($sql)->execute($parameters)->current();
         return (int) $row['count'];
     }
 
-    public function selectWhereBusinessId(int $businessId) : Generator
+    public function selectWhereBusinessId(int $businessId): Generator
     {
         $sql = '
             SELECT `task`.`task_id`
@@ -101,7 +101,7 @@ class Task
         }
     }
 
-    public function selectWhereTaskId(int $taskId) : array
+    public function selectWhereTaskId(int $taskId): array
     {
         $sql = '
             SELECT `task_id`
@@ -122,7 +122,7 @@ class Task
         return $this->adapter->query($sql)->execute($parameters)->current();
     }
 
-    public function updateViewsWhereTaskId(int $taskId) : bool
+    public function updateViewsWhereTaskId(int $taskId): int
     {
         $sql = '
             UPDATE `task`
@@ -133,14 +133,14 @@ class Task
         $parameters = [
             $taskId
         ];
-        return (bool) $this->adapter->query($sql, $parameters)->getAffectedRows();
+        return (int) $this->adapter->query($sql, $parameters)->getAffectedRows();
     }
 
     public function updateWhereTaskId(
         string $description,
         int $taskStatusId,
         int $taskId
-    ) : bool {
+    ): int {
         $sql = '
             UPDATE `task`
                SET `task`.`description` = :description,
@@ -153,6 +153,6 @@ class Task
             'taskStatusId' => $taskStatusId,
             'taskId'       => $taskId,
         ];
-        return (bool) $this->adapter->query($sql, $parameters)->getAffectedRows();
+        return (int) $this->adapter->query($sql, $parameters)->getAffectedRows();
     }
 }
