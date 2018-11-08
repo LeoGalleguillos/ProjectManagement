@@ -46,8 +46,8 @@ class CreateFromPost
         return $this->taskTable->insert(
             $businessEntity->getBusinessId(),
             $userEntity->getUserId(),
-            $name,
-            $description
+            $_POST['name'],
+            $_POST['description']
         );
     }
 }
