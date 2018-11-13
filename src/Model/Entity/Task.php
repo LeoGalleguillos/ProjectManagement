@@ -10,7 +10,6 @@ class Task
     protected $businessId;
     protected $created;
     protected $description;
-    protected $summary;
     protected $taskStatusEntity;
     protected $userId;
     protected $views;
@@ -33,11 +32,6 @@ class Task
     public function getName() : string
     {
         return $this->name;
-    }
-
-    public function getSummary() : string
-    {
-        return $this->summary;
     }
 
     public function getTaskId() : int
@@ -86,12 +80,6 @@ class Task
     public function setName(string $name) : ProjectManagementEntity\Task
     {
         $this->name = $name;
-        return $this;
-    }
-
-    public function setSummary(string $summary) : ProjectManagementEntity\Task
-    {
-        $this->summary = $summary;
         return $this;
     }
 
