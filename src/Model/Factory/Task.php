@@ -2,7 +2,6 @@
 namespace LeoGalleguillos\ProjectManagement\Model\Factory;
 
 use DateTime;
-use LeoGalleguillos\Business\Model\Entity as BusinessEntity;
 use LeoGalleguillos\ProjectManagement\Model\Entity as ProjectManagementEntity;
 use LeoGalleguillos\ProjectManagement\Model\Factory as ProjectManagementFactory;
 use LeoGalleguillos\ProjectManagement\Model\Table as ProjectManagementTable;
@@ -31,7 +30,7 @@ class Task
 
     public function buildFromArray(array $array): ProjectManagementEntity\Task
     {
-        $taskEntity = new BusinessEntity\Task();
+        $taskEntity = new ProjectManagementEntity\Task();
         $taskEntity->setBusinessId($array['business_id'])
                    ->setCreated(new DateTime($array['created']))
                    ->setDescription($array['description'])
