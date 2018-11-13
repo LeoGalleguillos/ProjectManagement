@@ -6,6 +6,7 @@ use LeoGalleguillos\ProjectManagement\Model\Factory as ProjectManagementFactory;
 use LeoGalleguillos\ProjectManagement\Model\Service as ProjectManagementService;
 use LeoGalleguillos\ProjectManagement\Model\Table as ProjectManagementTable;
 use LeoGalleguillos\ProjectManagement\View\Helper as ProjectManagementHelper;
+use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 
 class Module
@@ -26,6 +27,18 @@ class Module
     {
         return [
             'factories' => [
+                ProjectManagementFactory\Task::class => function ($sm) {
+                    return new ProjectManagementFactory\Task(
+                        $sm->get(ProjectManagementFactory\TaskStatus::class),
+                        $sm->get(ProjectManagementTable\Task::class),
+                        $sm->get(UserFactory\User::class)
+                    );
+                },
+                ProjectManagementFactory\TaskStatus::class => function ($sm) {
+                    return new ProjectManagementFactory\TaskStatus(
+                        $sm->get(ProjectManagementTable\TaskStatus::class)
+                    );
+                },
                 ProjectManagementService\Task\CreateFromPost::class => function ($sm) {
                     return new ProjectManagementService\Task\CreateFromPost(
                         $sm->get(FlashService\Flash::class),
@@ -33,8 +46,19 @@ class Module
                         $sm->get(UserService\LoggedInUser::class)
                     );
                 },
+                ProjectManagementService\Task\Tasks::class => function ($sm) {
+                    return new ProjectManagementService\Task\Tasks(
+                        $sm->get(ProjectManagementFactory\Task::class),
+                        $sm->get(ProjectManagementTable\Task::class)
+                    );
+                },
                 ProjectManagementTable\Task::class => function ($serviceManager) {
                     return new ProjectManagementTable\Task(
+                        $serviceManager->get('project-management')
+                    );
+                },
+                ProjectManagementTable\TaskStatus::class => function ($serviceManager) {
+                    return new ProjectManagementTable\TaskStatus(
                         $serviceManager->get('project-management')
                     );
                 },
