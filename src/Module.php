@@ -6,6 +6,7 @@ use LeoGalleguillos\ProjectManagement\Model\Factory as ProjectManagementFactory;
 use LeoGalleguillos\ProjectManagement\Model\Service as ProjectManagementService;
 use LeoGalleguillos\ProjectManagement\Model\Table as ProjectManagementTable;
 use LeoGalleguillos\ProjectManagement\View\Helper as ProjectManagementHelper;
+use LeoGalleguillos\String\Model\Service as StringService;
 use LeoGalleguillos\User\Model\Factory as UserFactory;
 use LeoGalleguillos\User\Model\Service as UserService;
 
@@ -16,8 +17,14 @@ class Module
         return [
             'view_helpers' => [
                 'aliases' => [
+                    'getTaskRootRelativeUrl' => ProjectManagementHelper\Task\RootRelativeUrl::class,
                 ],
                 'factories' => [
+                    ProjectManagementHelper\Task\RootRelativeUrl::class => function ($sm) {
+                        return new ProjectManagementHelper\Task\RootRelativeUrl(
+                            $sm->get(ProjectManagementService\Task\RootRelativeUrl::class)
+                        );
+                    },
                 ],
             ],
         ];
@@ -44,6 +51,11 @@ class Module
                         $sm->get(FlashService\Flash::class),
                         $sm->get(ProjectManagementTable\Task::class),
                         $sm->get(UserService\LoggedInUser::class)
+                    );
+                },
+                ProjectManagementService\Task\RootRelativeUrl::class => function ($sm) {
+                    return new ProjectManagementService\Task\RootRelativeUrl(
+                        $sm->get(StringService\UrlFriendly::class)
                     );
                 },
                 ProjectManagementService\Task\Tasks::class => function ($sm) {
