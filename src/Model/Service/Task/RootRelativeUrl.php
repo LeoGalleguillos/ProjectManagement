@@ -24,6 +24,6 @@ class RootRelativeUrl
         return '/project-management/tasks/'
              . $taskEntity->getTaskId()
              . '/'
-             . $this->urlFriendlyService->getSlug($taskEntity);
+             . $this->urlFriendlyService->getUrlFriendly($taskEntity->getName());
     }
 }
