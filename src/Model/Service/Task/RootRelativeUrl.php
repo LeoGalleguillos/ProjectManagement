@@ -1,7 +1,7 @@
 <?php
 namespace LeoGalleguillos\ProjectManagement\Model\Service\Task;
 
-use LeoGalleguillos\Business\Model\Entity as ProjectManagementEntity;
+use LeoGalleguillos\ProjectManagement\Model\Entity as ProjectManagementEntity;
 use LeoGalleguillos\String\Model\Service as StringService;
 
 class RootRelativeUrl
