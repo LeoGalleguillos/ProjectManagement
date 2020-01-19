@@ -33,7 +33,7 @@ class RootRelativeUrlTest extends TestCase
         $rru = $this->rootRelativeUrlService->getRootRelativeUrl($taskEntity);
 
         $this->assertSame(
-            '/project-management/tasks/54321/This-is-the-name',
+            '/project-management/tasks/54321/this-is-the-name',
             $rru
         );
     }
