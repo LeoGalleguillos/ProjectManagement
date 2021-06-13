@@ -6,7 +6,7 @@ use LeoGalleguillos\Test\TableTestCase;
 
 class TaskTest extends TableTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->taskTable = new ProjectManagementTable\Task($this->getAdapter());
 

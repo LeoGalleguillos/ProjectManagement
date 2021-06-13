@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class CreateFromPostTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->flashService = new FlashService\Flash();
         $this->taskTableMock = $this->createMock(
